@@ -39,16 +39,30 @@ function MenuController() {
         setLastSelectedItem(tmpItem)
     } , [menuItemsSelected])
 
+
+    const getNthItemContent = (N: number) => {
+        let savedItem = menuContent.content;
+        menuItemsSelected.forEach((elt, i) => {
+            const itemFound = savedItem.find(item => item.title === elt)?.children
+            if (i <= N && itemFound?.length) {
+                savedItem = itemFound
+            }
+        })
+        return savedItem
+    }
+
     return (
         <div className='menu-controller-container'>
             <div className='menu-controller-visible-area' style={{transform: `translateX(-${menuItemsSelected.length*500}px)`}}>
                 <Menu menuContent={menuContent.content} moveToMenuItem={addMenuItem} />
-                {menuItemsSelected?.map((itemName) => <Menu
-                    key={itemName as Key}
-                    goBack={() => removeItem()}
-                    menuContent={lastSelectedItem} 
-                    moveToMenuItem={addMenuItem}
-                />)}
+                {menuItemsSelected?.map((itemName, index) => 
+                    <Menu
+                        key={itemName as Key}
+                        goBack={() => removeItem()}
+                        menuContent={getNthItemContent(index)}
+                        moveToMenuItem={addMenuItem}
+                    />
+                )}
             </div>
         </div>
   );
