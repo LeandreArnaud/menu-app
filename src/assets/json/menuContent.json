@@ -4,7 +4,15 @@
             "title": "Logoden biniou degemer",
             "children": [
                 {
-                    "title": "pleg skevent gourc’hemenn bell, Sant-Maloù"
+                    "title": "pleg skevent gourc’hemenn bell, Sant-Maloù",
+                    "children": [
+                        {
+                            "title": "pleg skevent gourc’hemenn bell, Sant-Maloù"
+                        },
+                        {
+                            "title": "sevel koustañ ugent vunutenn"
+                        }
+                    ]
                 },
                 {
                     "title": "sevel koustañ ugent vunutenn"

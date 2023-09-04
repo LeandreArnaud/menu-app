@@ -1,15 +1,24 @@
 import './Menu.scss';
-import menuContent from '../../assets/json/menuContent.json';
 import MenuItem from '../menuItem/MenuItem';
 import { ItemType } from '../menuItem/MenuItemTypes';
+import { Key } from 'react';
 
-function Menu() {
-  return (
-    <div className='menu-main-container'>
-        {menuContent?.content?.map(elt => 
-            <MenuItem key={elt.title} item={elt as ItemType} />
-        )}
-    </div>
+type MenuProps = {
+    menuContent: ItemType[] | undefined;
+    moveToMenuItem: (itemName: String) => void;
+    goBack?: () => void;
+};
+
+function Menu({menuContent, moveToMenuItem, goBack}: MenuProps) {
+    return (
+        <div className='menu-main-container'>
+            {goBack ?
+                <MenuItem key="arrow" isArrow onClick={goBack} />
+            : null}
+            {menuContent?.map(elt => 
+                <MenuItem key={elt.title as Key} item={elt} onClick={() => moveToMenuItem(elt.title)} />
+            )}
+        </div>
   );
 }
 

@@ -1,10 +1,10 @@
 import './App.scss';
-import Menu from './components/menu/Menu';
+import MenuController from './components/menu-controller/MenuController';
 
 function App() {
   return (
     <div className="App">
-      <Menu />
+      <MenuController />
     </div>
   );
 }

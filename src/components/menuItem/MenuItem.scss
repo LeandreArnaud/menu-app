@@ -15,14 +15,24 @@
     .arrow-icon {
         width: 25px;
         opacity: 0.4;
+        
+        &.reversed {
+            transform: rotate(180deg);
+            &:hover{
+                cursor: pointer;
+                opacity: 1;
+            }
+        }
     }
 
-    &:hover{
-        cursor: pointer;
-        background-color: #ddeff8;
-
-        .arrow-icon {
-            opacity: 1;
+    &.is-not-arrow {
+        &:hover{
+            cursor: pointer;
+            background-color: #ddeff8;
+    
+            .arrow-icon {
+                opacity: 1;
+            }
         }
     }
 }

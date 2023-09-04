@@ -1,0 +1,11 @@
+.menu-controller-container {
+    display: flex;
+    width: 500px;
+    overflow: hidden;
+    background-color: white;
+
+    .menu-controller-visible-area {
+        display: flex;
+        transition: 0.2s ease-in-out;
+    }
+}
