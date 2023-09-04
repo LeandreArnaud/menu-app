@@ -1,5 +1,5 @@
 import menuContent from '../../assets/json/menuContent.json';
-import { useEffect, useState } from 'react';
+import { Key, useEffect, useState } from 'react';
 import Menu from '../menu/Menu';
 import "./MenuController.scss";
 import { ItemType } from '../menuItem/MenuItemTypes';
@@ -13,7 +13,7 @@ function MenuController() {
         if (lastSelectedItem.find(elt => elt.title === itemName)?.children?.length) {
             setMenuItemsSelected([...menuItemsSelected, itemName])
         } else {
-            // action when clicking on a menu item without children
+            // TO FILL: action when clicking on a menu item without children
         }
     }
 
@@ -44,6 +44,7 @@ function MenuController() {
             <div className='menu-controller-visible-area' style={{transform: `translateX(-${menuItemsSelected.length*500}px)`}}>
                 <Menu menuContent={menuContent.content} moveToMenuItem={addMenuItem} />
                 {menuItemsSelected?.map((itemName) => <Menu
+                    key={itemName as Key}
                     goBack={() => removeItem()}
                     menuContent={lastSelectedItem} 
                     moveToMenuItem={addMenuItem}
