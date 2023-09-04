@@ -2,13 +2,15 @@ import menuContent from '../../assets/json/menuContent.json';
 import { useEffect, useState } from 'react';
 import Menu from '../menu/Menu';
 import "./MenuController.scss";
+import { ItemType } from '../menuItem/MenuItemTypes';
 
 function MenuController() {
     const [menuItemsSelected, setMenuItemsSelected] = useState<String[]>([]);
+    const [lastSelectedItem, setLastSelectedItem] = useState<ItemType[]>([]);
 
     // triggered when we click on an item
     const addMenuItem = (itemName: String) => {
-        if (menuContent.content.find(elt => elt.title === itemName)?.children?.length) {
+        if (lastSelectedItem.find(elt => elt.title === itemName)?.children?.length) {
             setMenuItemsSelected([...menuItemsSelected, itemName])
         } else {
             // action when clicking on a menu item without children
@@ -17,7 +19,6 @@ function MenuController() {
 
     // triggered when we click on the back arrow
     const removeItem = () => {
-        console.log('coucou')
         if (menuItemsSelected.length <= 1) {
             setMenuItemsSelected([])
         } else {
@@ -26,16 +27,25 @@ function MenuController() {
         }  
     } 
 
+    // get the current menu children data
     useEffect(() => {
-        console.log('menuItemsSelected', menuItemsSelected);
+        let tmpItem = menuContent.content
+        menuItemsSelected.forEach(itemSelected => {
+            const currentItem = tmpItem.find(elt => elt.title === itemSelected)
+            if (currentItem?.children?.length) {
+                tmpItem = currentItem.children
+            }
+        })
+        setLastSelectedItem(tmpItem)
     } , [menuItemsSelected])
+
     return (
         <div className='menu-controller-container'>
             <div className='menu-controller-visible-area' style={{transform: `translateX(-${menuItemsSelected.length*500}px)`}}>
                 <Menu menuContent={menuContent.content} moveToMenuItem={addMenuItem} />
                 {menuItemsSelected?.map((itemName) => <Menu
                     goBack={() => removeItem()}
-                    menuContent={menuContent.content.find(elt => elt.title === itemName)?.children} 
+                    menuContent={lastSelectedItem} 
                     moveToMenuItem={addMenuItem}
                 />)}
             </div>
