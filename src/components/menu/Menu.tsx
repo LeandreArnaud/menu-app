@@ -22,7 +22,7 @@ function Menu({menuContent, goBack}: MenuProps) {
     }
 
     return (
-        <>
+        <div style={!subMenuContent?.length ? {height : `${menuContent.length*60 + (goBack ? 60 : 0)}px`} : {}}>
             <div className={`menu-main-container ${subMenuContent?.length ? 'hidden' : ''} ${!goBack ? 'disable-appear-animation' : ''}`}>
                 {goBack ?
                     <MenuItem key="arrow" isArrow onClick={goBack} />
@@ -34,7 +34,7 @@ function Menu({menuContent, goBack}: MenuProps) {
             {subMenuContent?.length ? 
                 <Menu menuContent={subMenuContent} goBack={() => setSubMenuContent([])} /> 
             : null}
-        </>
+        </div>
   );
 }
 

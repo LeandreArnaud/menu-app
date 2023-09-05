@@ -1,10 +1,11 @@
 .menu-item-container{
     background-color: #f7f7f7;
-    padding: 22px;
+    padding-inline: 22px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: 0.3s ease-in-out;
+    height: 60px;
 
     h4 {
         white-space: nowrap;
