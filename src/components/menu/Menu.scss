@@ -2,4 +2,20 @@
     display: flex;
     width: 500px;
     flex-direction: column;
+    position: absolute;
+    transition: 0.2s;
+    animation: appear 0.2s;
+
+    &.hidden {
+        transform: translateX(-500px);
+    }
+
+    &.disable-appear-animation {
+        animation: none;
+    }
+}
+
+@keyframes appear {
+    from { transform: translateX(500px) }
+      to { transform: translateX(0px) }
 }

@@ -23,7 +23,7 @@ function Menu({menuContent, goBack}: MenuProps) {
 
     return (
         <>
-            <div className='menu-main-container'>
+            <div className={`menu-main-container ${subMenuContent?.length ? 'hidden' : ''} ${!goBack ? 'disable-appear-animation' : ''}`}>
                 {goBack ?
                     <MenuItem key="arrow" isArrow onClick={goBack} />
                 : null}
